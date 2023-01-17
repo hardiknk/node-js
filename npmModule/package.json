@@ -1,0 +1,20 @@
+{
+  "name": "npmmodule",
+  "version": "1.0.0",
+  "description": "this module is for demo perpose only",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "hardik",
+    "kanzariya"
+  ],
+  "author": "Hardik",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.2.0",
+    "nodemon": "^2.0.20",
+    "validator": "^13.7.0"
+  }
+}
