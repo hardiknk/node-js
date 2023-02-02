@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css"
+        integrity="sha512-PgQMlq+nqFLV4ylk1gwUOgm6CtIIXkKwaIHp/PAIWHzig/lKZSEGKEysh0TCVbHJXCLN7WetD8TFecIky75ZfQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather</title>
+    <style>
+        .box {
+            border: 2px solid blue;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box" style="padding: 10px;">
+        <div class="wave one"> </div>
+        <div class="wave two"> </div>
+        <div class="wave three"> </div>
+        <div id="weathercon">
+            <i class="fas fa-sun">
+            </i>
+        </div>
+        <div class="info">
+            <h2 class="location">
+                <i class="fas fa-street-view"> </i>
+            </h2>
+            <p id="date"> WED | OCT 23 | 10:49 </p>
+            <h1 class="temp"> 26.49 </h1>
+            <h3 class="temp_min_max"> Min 26.49 C | 210.46 C </h3>
+        </div>
+    </div>
+</body>
+<script>
+    let days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
+    let date = new Date();
+    let dayName = days[date.getDay()]
+    let currentDate = date.getDate();
+    let currentMonth = date.toLocaleString('default', { month: 'short' })
+    let currentMinute = date.getMinutes();
+    let currentHours = date.getHours();
+
+    let AM_PM = currentHours >= 12 ? "PM" : "AM";
+
+    if (currentMinute < 10) {
+        currentMinute = "0" + currentMinute;
+    }
+
+    let currentTime = currentHours + ":" + currentMinute + " " + AM_PM;
+    console.log(`${dayName} | ${currentMonth} ${currentDate} | ${currentTime} `);
+
+</script>
+
+</html>
