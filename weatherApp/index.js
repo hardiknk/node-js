@@ -5,11 +5,9 @@ const http = require("http");
 const homeFile = fs.readFileSync("home2.html", 'utf-8');
 
 const reaplaceVal = (tempValue, orgVal) => {
-    // console.log(orgVal);
     let temprature = tempValue.replace("{%temp_value%}", orgVal.main.temp);
     temprature = temprature.replace("{%min_value%}", orgVal.main.temp_min);
     temprature = temprature.replace("{%max_value%}", orgVal.main.temp_max);
-    // console.log(temprature);
     return temprature;
 }
 
