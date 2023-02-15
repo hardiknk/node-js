@@ -3,39 +3,31 @@ const express = require('express');
 const app = express();
 const mongodb = require('mongodb');
 //import connection from db connection file 
-const Student = require('../src/models/student');
+// const Student = require('../src/models/student');
 
 const port = 8005;
 
-//connect to mongodb
-
-//this is for testing purposes
-// app.get('/', (req, res) => {
-//     res.send("hello hardik kanzariya");
-// });
 app.use(express.json());
 
-// //using the promises insert 
-// app.post('/add-student', (req, res) => {
-//     const student = new Student(req.body);
-//     student.save().then(() => {
-//         res.status(201).send(student);
-//     }).catch((err) => {
-//         res.status(422).send(err.message);
-//     });
+
+
+//here we need to create routers 
+
+//1 create a new router 
+// const router = new express.Router();
+//2 we need to define routes
+// router.get('/get-students', async (req, res) => {
+//     try {
+//         const allStudents = await Student.find();
+//         res.send(allStudents);
+//     } catch (error) {
+//         res.send(error);
+//     }
 // });
+// 3. we need to register our routers
+// app.use(router);
 
-
-//using the async and await 
-//using the promises insert 
-app.post('/add-student', async (req, res) => {
-    try {
-        const student = new Student(req.body);
-        const cretedUser = await student.save();
-        res.status(201).send(cretedUser);
-    } catch (error) {
-        res.status(422).send(error);
-    }
-
-});
+//external file in router folder student.js
+const studentRoute = require('../src/router/student');
+app.use(studentRoute);
 app.listen(port);
