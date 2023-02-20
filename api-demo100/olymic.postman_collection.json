@@ -1,0 +1,159 @@
+{
+	"info": {
+		"_postman_id": "1cb283bb-8f97-4df7-bbc1-f3db831c817d",
+		"name": "olymic",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19733617"
+	},
+	"item": [
+		{
+			"name": "Add-men-ranking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ranking\" : 16,\n    \"name\" : \"Harsh Mehta\",\n    \"dob\" : \"2016-12-13T06:55:24.698Z\",\n    \"country\" : \"India\",\n    \"score\" : 2,\n    \"event\" :  \"100 Meter\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8005/add-men-ranking",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8005",
+					"path": [
+						"add-men-ranking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getManRanking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8005/get-men-ranking",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8005",
+					"path": [
+						"get-men-ranking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get-man-by-id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8005/get-men-ranking/63edd45da4a24dcf4512bf51",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8005",
+					"path": [
+						"get-men-ranking",
+						"63edd45da4a24dcf4512bf51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update-man-ranking",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"country\" : \"Amerika\" \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8005/update-men-ranking/63edd45da4a24dcf4512bf51",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8005",
+					"path": [
+						"update-men-ranking",
+						"63edd45da4a24dcf4512bf51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-man-ranking",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"_id\" : \"63edd299936a001ab825f073\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8005/delete-man-ranking",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8005",
+					"path": [
+						"delete-man-ranking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
