@@ -38,6 +38,10 @@ app.get("/login", (req, res) => {
     res.render("login");
 });
 
+app.get("/home", async (req, res) => {
+    res.render("home");
+});
+
 app.post('/login', async (req, res) => {
     try {
         const { email, password } = req.body;
