@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require('express');
 const app = express();
 const port = 5003;
@@ -54,7 +55,13 @@ app.post('/login', async (req, res) => {
                 res.send("Invalid password");
             }
 
-            res.send(isLogin);
+            //when we login then generate the token 
+            const generateToken = await isLogin.generateStudentToken();
+            res.cookie('jwt_test',generateToken,{
+                expires: new Date(Date.now() + 30000),
+                httpOnly: true
+            });
+            res.render("index");
         } else {
             res.status(422).send("Invalid email.");
         }
@@ -81,11 +88,32 @@ app.post('/register-student', async (req, res) => {
             password: password,
         });
 
+        //before save data generate the token 
+        const token = await studentModel.generateStudentToken();
+        // console.log(token);
         const afterAddData = await studentModel.save();
-        res.status(200).send(afterAddData);
+        // res.status(200).send(afterAddData);
+
+        res.status(200).render("index");
     } catch (error) {
         res.status(400).send(error);
     }
 });
-// app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+
+//jwt => json web token 
+const jwt = require('jsonwebtoken');
+const createToken = async () => {
+    //sign(payload, secret key)
+    const token = await jwt.sign({ _id: "HelloHardik" }, "hardikhardikhardikhardikhardikhardik", {
+        expiresIn: "2 seconds",
+    });
+    // console.log(token);
+
+    //verify the generated token  (token, secret key)
+    const retriveToken = await jwt.verify(token, "hardikhardikhardikhardikhardikhardik");
+    console.log(retriveToken); //ouptput { _id: 'HelloHardik', iat: 1677045236 }
+}
+
+createToken();
 app.listen(port);
+
