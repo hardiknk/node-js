@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+require('dotenv').config({ path: '../../.env' }); //here we are also giving the custom path useing the path: method 
 
 const schemaStudent = new mongoose.Schema({
     first_name: {
@@ -38,7 +39,7 @@ const schemaStudent = new mongoose.Schema({
 const jwt = require('jsonwebtoken');
 schemaStudent.methods.generateStudentToken = async function () {
     try {
-        const token = await jwt.sign({ _id: this._id.toString() }, "mynameishardikkanzariya");
+        const token = await jwt.sign({ _id: this._id.toString() }, process.env.SECRET_KEY);
         this.tokens = this.tokens.concat({ token: token });
         //here token is concat but we need to save the data into database 
         await this.save();
