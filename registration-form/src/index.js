@@ -100,16 +100,15 @@ app.post('/login', async (req, res) => {
 app.get('/logout', auth, async (req, res) => {
     try {
         res.send(req.user);
-        req.user.tokens = req.user.tokens.filter((ele, index) => {
+        req.user.tokens = req.user.tokens.filter((ele) => {
             ele != req.token;
         });
-        
+
         res.clearCookie("jwt_test");
         await req.user.save();
         res.render("login");
     } catch (error) {
         console.log(error);
-        // res.send(error);
     }
 
 });
