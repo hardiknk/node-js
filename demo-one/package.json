@@ -1,0 +1,23 @@
+{
+  "name": "demo-one",
+  "version": "1.0.0",
+  "description": "node demo for create post",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev" : "nodemon public/src/index.js -e hbs" 
+  },
+  "keywords": [
+    "post",
+    "crate"
+  ],
+  "author": "hardik kanzariya",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.10.0",
+    "path": "^0.12.7"
+  }
+}
