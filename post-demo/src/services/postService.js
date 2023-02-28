@@ -1,14 +1,22 @@
 const { fileUpload } = require("../helpers/common");
 const Post = require("../models/postModel");
+const path = require("path");
+const fs = require("fs");
 
 class postService {
 
     async getAllPost(req, res) {
         try {
             const postData = await Post.find({});
-            res.status(200).jsonp(postData);
+            res.status(400).jsonp({
+                data: postData,
+                message: "Post records fetched successfully.",
+            });
         } catch (error) {
-            res.send(error);
+            res.status(400).jsonp({
+                data: null,
+                message: error
+            });
         }
     }
 
@@ -27,9 +35,15 @@ class postService {
                 post_image: fileName,
             });
 
-            res.send(postData);
+            res.status(400).jsonp({
+                data: postData,
+                message: "Post is added successfully.",
+            });
         } catch (error) {
-            res.send(error.message);
+            res.status(400).jsonp({
+                data: null,
+                message: error
+            });
         }
     }
 
@@ -46,7 +60,10 @@ class postService {
             }
 
         } catch (error) {
-            res.status(400).json({ data: null, message: error });
+            res.status(400).jsonp({
+                data: null,
+                message: error
+            });
         }
     }
 
@@ -59,16 +76,29 @@ class postService {
             let fileName = "";
             if (req.file) {
                 fileName = req.file.filename;
+                if (fileName) {
+                    const dirPath = path.join(__dirname, "../images/");
+                    if (postData.post_image) {
+                        if (fs.existsSync(dirPath + postData.post_image)) {
+                            fs.unlink(dirPath + postData.post_image, (err) => {
+                                if (err) {
+                                    throw err;
+                                }
+                            });
+                        }
+                    }
+                }
             }
             else {
                 fileName = postData.post_image;
             }
+
             postData.title = title;
             postData.description = description;
             postData.post_image = fileName;
 
             const updateData = await postData.save();
-            
+
             res.status(200).jsonp({
                 data: updateData,
                 message: "Post data was successfully updated.",
